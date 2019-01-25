@@ -34,6 +34,7 @@ lazy_static! {
             ("404.html", include_str!("builtins/404.html")),
             ("rss.xml", include_str!("builtins/rss.xml")),
             ("sitemap.xml", include_str!("builtins/sitemap.xml")),
+            ("multi_sitemap.xml", include_str!("builtins/multi_sitemap.xml")),
             ("robots.txt", include_str!("builtins/robots.txt")),
             ("anchor-link.html", include_str!("builtins/anchor-link.html")),
             ("shortcodes/youtube.html", include_str!("builtins/shortcodes/youtube.html")),
