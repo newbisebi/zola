@@ -707,3 +707,19 @@ fn can_apply_page_templates() {
     assert_eq!(child.meta.template, Some("page_template_child.html".into()));
     assert_eq!(child.meta.title, Some("Local section override".into()));
 }
+
+#[test]
+fn can_create_multiple_sitemaps() {
+    let mut path = env::current_dir().unwrap().parent().unwrap().parent().unwrap().to_path_buf();
+    path.push("test_site");
+    let mut site = Site::new(&path, "config.toml").unwrap();
+    site.config.sitemap_limit = 10;
+    site.load().unwrap();
+    let tmp_dir = tempdir().expect("create temp dir");
+    let public = &tmp_dir.path().join("public");
+    site.set_output_path(&public);
+    site.build().unwrap();
+
+    assert!(file_exists!(public, "sitemap.xml"));
+    assert!(file_exists!(public, "sitemap1.xml"));
+}
